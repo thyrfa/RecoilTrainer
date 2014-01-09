@@ -2,20 +2,29 @@
 <html>
 <head>
 <script>
-function show_coords(event)
+var coords=[[183, 61], [179, 93], [179, 132], [181, 183], [191, 244], [207, 307], [219, 358], [218, 397], [192, 420], [128, 429], [110, 436], [84, 443], [61, 451], [44, 452], [50, 455], [85, 463], [130, 473], [179, 480], [223, 481], [253, 477], [260, 473],[260, 473],[251, 485], [254, 494], [261, 500], [261, 500], [227, 496], [170, 485], [106, 468], [45, 450]];
+var playercoords=[];
+function get_coords(i)
 {
-var x=event.clientX;
-var y=event.clientY;
-alert("X coords: " + x + ", Y coords: " + y);
+    if (i<30){
+        var x=document.Show.MouseX.value;
+        var y=document.Show.MouseY.value;
+        playercoords.push([x, y]);
+        setTimeout(function(){get_coords(i+1);},100);
+
+    }
+    
 }
-document.getElementById(recoil1).onmousedown=show_coords(event);
+document.getElementById(recoil1).onmousedown=show_coords(0);
 
 </script>
 </head>
 
 <body>
 
-<img id="recoil1" src="01 - C2IFSb0_frame_0031" ALT="done recoil"/>
+<img id="recoil1" src="recoilak.gif" ALT="done recoil"/>
 
 </body>
 </html>
+
+
