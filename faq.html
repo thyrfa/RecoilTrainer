@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
+<script type="text/javascript">
+window.onload = function() {
 var coords=[[183, 61], [179, 93], [179, 132], [181, 183], [191, 244], [207, 307], [219, 358], [218, 397], [192, 420], [128, 429], [110, 436], [84, 443], [61, 451], [44, 452], [50, 455], [85, 463], [130, 473], [179, 480], [223, 481], [253, 477], [260, 473],[260, 473],[251, 485], [254, 494], [261, 500], [261, 500], [227, 496], [170, 485], [106, 468], [45, 450]];
 var playercoords=[];
-function get_coords(i)
-{
-    if (i<30){
-        var x=document.Show.MouseX.value;
-        var y=document.Show.MouseY.value;
-        playercoords.push([x, y]);
-        setTimeout(function(){get_coords(i+1);},100);
-
-    }
-    
+var cursorX;
+var cursorY;
+var i;
+document.onmousemove = function(e){
+    cursorX = e.pageX;
+    cursorY = e.pageY;
 }
-document.getElementById(recoil1).onmousedown=show_coords(0);
+function checkCursor(){
+    playercoords.push([cursorX, cursorY]);
+    i=i+1;
+    if (i==30){
+        stopInterval(interval);
+    }
+}
+var interval=setInterval("checkCursor()", 100);
 
+document.getElementById("recoilstart").onmouseover=function(){
+    var x=document.Show.MouseX.value;
+    var y=document.Show.MouseY.value;
+    alert("X coords: " + x + ", Y coords: " + y);
+}
+document.getElementById('recoilstart').onmousedown=function(){
+    var image_x = document.getElementById('recoilstart');
+    image_x.parentNode.removeChild(image_x);
+    var img = document.createElement("recoil1");
+    img.src = "recoilak.gif";
+    var src = document.getElementById("header");
+    src.appendChild(img);
+}
+}
 </script>
 </head>
 
 <body>
-
-<img id="recoil1" src="recoilak.gif" ALT="done recoil"/>
-
+<img id="recoilstart" src="frame_0001.jpg" ALT="recoil image"/>
 </body>
 </html>
 
